@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Property Management</title>
+</head>
+<body>
+    <h1>Property Management</h1>
+
+    <h2>Properties</h2>
+    <ul>
+        {% for property in properties %}
+            <li>{{ property.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tenants</h2>
+    <ul>
+        {% for tenant in tenants %}
+            <li>{{ tenant.first_name }} {{ tenant.last_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Repeat the above code for other models -->
+</body>
+</html>
