@@ -19,6 +19,13 @@
             <li>{{ tenant.first_name }} {{ tenant.last_name }}</li>
         {% endfor %}
     </ul>
+    
+    <h2>Leases</h2>
+    <ul>
+        {% for lease in leases %}
+            <li>{{ lease.name }}</li>
+        {% endfor %}
+    </ul>
 
     <!-- Repeat the above code for other models -->
 </body>

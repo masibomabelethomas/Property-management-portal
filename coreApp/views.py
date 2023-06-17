@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
 
 # Create your views here.
-def core_app_view(request):
+def Core_View(request):
     properties = Property_model.objects.all()
     tenants = Tenant_model.objects.all()
     leases = Lease_model.objects.all()
@@ -19,4 +19,4 @@ def core_app_view(request):
         'invoices': invoices,
     }
 
-    return render(request, 'coreApp/core_app.html', context)
+    return render(request, 'core_app.html', context)

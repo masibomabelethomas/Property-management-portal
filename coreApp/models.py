@@ -1,5 +1,8 @@
 from django.db import models
 
+
+name = 'coreApp'
+
 # Create your models here.
 #Property
 class Property_model(models.Model):
