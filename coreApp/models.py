@@ -1,8 +1,6 @@
 from django.db import models
 
-
 name = 'coreApp'
-
 # Create your models here.
 #Property
 class Property_model(models.Model):
@@ -22,7 +20,9 @@ class Tenant_model(models.Model):
     name = models.CharField(max_length=255)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
-    lease = models.ForeignKey('Lease_model', on_delete=models.CASCADE)
+    # lease = models.TextField('Lease_model')
+    lease = models.ForeignKey('Lease_model', on_delete=models.SET_NULL, blank=True, null=True)
+    # lease = models.ForeignKey('Lease_model', on_delete=models.CASCADE)
     move_in_date = models.DateField()
     move_out_date = models.DateField(blank=True, null=True)
     references = models.TextField()
@@ -39,7 +39,11 @@ class Tenant_model(models.Model):
  #Lease model.
 class Lease_model(models.Model):
     property = models.ForeignKey('Property_model', on_delete=models.CASCADE)
-    tenant = models.ForeignKey('Tenant_model', on_delete=models.CASCADE)
+    
+    start_date = models.DateField(null=True, blank=True)
+    tenant = models.ForeignKey(Tenant_model, on_delete=models.SET_NULL, blank=True, null=True)
+    # tenant = models.TextField('Tenant_model')
+    # tenant = models.ForeignKey('Tenant_model', on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     monthly_rent = models.DecimalField(max_digits=10, decimal_places=2)

@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
+from .forms import TenantRegistrationForm
 
 # Create your views here.
 def Core_View(request):
@@ -20,3 +21,15 @@ def Core_View(request):
     }
 
     return render(request, 'core_app.html', context)
+
+# form registration view
+def tenant_registration_view(request):
+    if request.method == 'POST':
+        form = TenantRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success')  # Redirect to a success page after successful registration
+    else:
+        form = TenantRegistrationForm()
+
+    return render(request, 'registration.html', {'form': form})

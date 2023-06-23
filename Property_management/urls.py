@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-# from coreApp.views import core_app_view
-
+# from django.urls import reverse
+# url = reverse('tenant_registration')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
