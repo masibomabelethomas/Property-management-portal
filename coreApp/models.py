@@ -8,7 +8,14 @@ class Property_model(models.Model):
     address = models.CharField(max_length=255)
     size = models.PositiveIntegerField()
     num_rooms = models.PositiveIntegerField()
-    amenities = models.TextField()
+    AMENITIES_CHOICES = [
+        ('balcony', 'Balcony'),
+        ('gym', 'Gym'),
+        ('pool', 'Swimming Pool'),
+        # Add more amenities as needed
+    ]
+    amenities = models.TextField(choices=AMENITIES_CHOICES)
+  
     rental_price = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=50)
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
-from .forms import TenantRegistrationForm
+# from .forms import TenantRegistrationForm
 
 # Create your views here.
 def Core_View(request):
@@ -23,13 +23,58 @@ def Core_View(request):
     return render(request, 'core_app.html', context)
 
 # form registration view
-def tenant_registration_view(request):
-    if request.method == 'POST':
-        form = TenantRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success')  # Redirect to a success page after successful registration
-    else:
-        form = TenantRegistrationForm()
+# def tenant_registration_view(request):
+#     if request.method == 'POST':
+#         form = TenantRegistrationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('success')  # Redirect to a success page after successful registration
+#     else:
+#         form = TenantRegistrationForm()
 
-    return render(request, 'registration.html', {'form': form})
+#     return render(request, 'registration.html', {'form': form})
+
+
+#populate data api
+from django.http import JsonResponse
+from .models import Property_model
+
+def populate_properties_api(request):
+    # Make a request to another API or use data from a different source
+    property_data = [
+        {
+        'name': 'Property 1',
+        'address': '123 Main St',
+        'size': 1200,
+        'num_rooms': 3,
+        'amenities': 'Swimming pool, Gym, Parking',
+        'rental_price': 1500.00,
+        'status': 'Available',
+    },
+    {
+        'name': 'Property 2',
+        'address': '456 Elm St',
+        'size': 1000,
+        'num_rooms': 2,
+        'amenities': 'Garden, Balcony',
+        'rental_price': 1200.00,
+        'status': 'Occupied',
+    },
+        
+    ]
+
+    for data in property_data:
+        property_instance = Property_model(
+            name=data['name'],
+            address=data['address'],
+            size=data['size'],
+            num_rooms=data['num_rooms'],
+            amenities=data['amenities'],
+            rental_price=data['rental_price'],
+            status=data['status'],
+        )
+            # Set other attributes based on the property data
+        
+        property_instance.save()
+
+    return JsonResponse({'message': 'Properties populated successfully'})
