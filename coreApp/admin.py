@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
+# from Authentication_App.models import CustomUser
  
 # Register your models here. 
 # from .models import Product
@@ -40,3 +41,6 @@ admin.site.register(Lease_model, Lease_modelAdmin)
 admin.site.register(MaintenanceRequest_model, MaintenanceRequest_modelAdmin)
 admin.site.register(Payment_model, Payment_modelAdmin)
 admin.site.register(Invoice_model, Invoice_modelAdmin)
+
+
+# admin.site.register(CustomUser)
