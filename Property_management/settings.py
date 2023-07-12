@@ -40,15 +40,16 @@ INSTALLED_APPS = [
 
     # libraries
     'rest_framework.authtoken',
-    
     # app registration
     'Authentication_App',
+    
     'coreApp',
     'Documents_App',
     'Listings_App',
     'Maintenance_App',
     'RentCollection_App',
     'ReportingAndAnalytics_App',
+    'accounts'
 
 ]
 
@@ -94,8 +95,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -137,9 +136,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-## users
-AUTH_USER_MODEL = 'Authentication_App.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+# ## users
+# # AUTH_USER_MODEL = 'Authentication_App.CustomUser'
+# AUTH_USER_MODEL = ''

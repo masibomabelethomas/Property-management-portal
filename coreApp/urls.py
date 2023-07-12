@@ -9,7 +9,7 @@ from .views import Core_View
 app_name = 'coreApp'
 
 urlpatterns = [
-    path('', Core_View, name= 'main_app'),
+    path('/', Core_View, name= 'main_app'),
     # path('register/', tenant_registration_view, name='tenant_registration'),
     path('api/properties/populate/', views.populate_properties_api), 
 ]
