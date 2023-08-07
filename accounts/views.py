@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 
 #our login
-
 def user_login(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -24,12 +23,6 @@ def user_login(request):
         # context = {}
         return render(request, 'login.html')
 
-
-
-
-
-
-
 # Create your views here.
 def register_view(request):
     form = RegisterForm()
@@ -44,7 +37,6 @@ def register_view(request):
     context ={
             "register_form":form,
     }
-
 
     return render(request, "register.html", context) 
     # 

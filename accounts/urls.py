@@ -1,4 +1,4 @@
-from accounts.views import register_view, user_login,user_logout
+from accounts.views import register_view, user_login, user_logout
 from django.urls import path
 
 urlpatterns = [
