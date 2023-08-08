@@ -18,7 +18,6 @@ def user_login(request):
                 return redirect('/')
             else:
                 messages.info(request, 'username or password is incorrect')
-        
 
         # context = {}
         return render(request, 'login.html')
@@ -32,7 +31,7 @@ def register_view(request):
             user = form.save()
             messages.success(request, "Registration Successful")
             return redirect("/")
-        messages.error(request, "register.html",{"register_form":form})
+        messages.error(request, "register.html", {"register_form":form})
 
     context ={
             "register_form":form,

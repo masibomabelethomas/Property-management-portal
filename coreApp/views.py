@@ -1,8 +1,17 @@
 from django.shortcuts import render, redirect
 from .models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+
 # from .forms import TenantRegistrationForm
 
 # Create your views here.
+# accounts/views.py (or another app's views.py)
+ 
+def home_view(request):
+    return render(request, 'home.html')#index.html
+
+# @login_required
 def Core_View(request):
     properties = Property_model.objects.all()
     tenants = Tenant_model.objects.all()
@@ -20,7 +29,7 @@ def Core_View(request):
         'invoices': invoices,
     }
 
-    return render(request, 'core_app.html', context)
+    return render(request, 'main.html', context)
 
 # form registration view
 # def tenant_registration_view(request):
@@ -59,10 +68,8 @@ def populate_properties_api(request):
         'amenities': 'Garden, Balcony',
         'rental_price': 1200.00,
         'status': 'Occupied',
-    },
-        
+    }, 
     ]
-
     for data in property_data:
         property_instance = Property_model(
             name=data['name'],
@@ -76,5 +83,4 @@ def populate_properties_api(request):
             # Set other attributes based on the property data
         
         property_instance.save()
-
     return JsonResponse({'message': 'Properties populated successfully'})

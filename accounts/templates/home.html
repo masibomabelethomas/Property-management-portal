@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE HTML>
 <!--
 	Hielo by TEMPLATED
@@ -24,12 +22,21 @@
 
 		<!-- Nav -->
 			<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="login.html">login</a></li>
-					<li><a href="register.html">register</a></li>
+				<ul>
+					<li><a href="{% url 'coreApp:main' %}"> Home</a></li>
+					
+					{% if user.is_authenticated %}
+					<a href="#" style ="color: #ffefef;"> { Welcome back-{{ user.username
+					}}}</a> 
+					<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+					{% else %}
+					<li><a href="{% url 'accounts:register' %}">register</a></li>
+					<li><a href="{% url 'accounts:login' %}">login</a></li>
+					{% endif %}
+			
 				</ul>
 			</nav>
+				
 
 		<!-- Banner -->
 			<section class="banner full">
