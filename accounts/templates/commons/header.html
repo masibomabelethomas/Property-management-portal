@@ -1,13 +1,14 @@
 
 {% load static %}
 
+{% block content %}
 <header>
     <!-- <img src="{% static 'images/logos.png'%}"/> -->
 </header>
 
 <nav>
     <ul>
-        <li><a href="{% url 'coreApp:main_app' %}"> Home</a></li>
+        <li><a href="{% url 'coreApp:main' %}"> main</a></li>
         
         {% if user.is_authenticated %}
         <a href="#" style ="color: #ffefef;"> { Welcome back-{{ user.username
@@ -20,3 +21,4 @@
 
     </ul>
 </nav>
+{% endblock %}

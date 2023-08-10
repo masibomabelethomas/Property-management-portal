@@ -5,9 +5,7 @@ from django.http import HttpResponseRedirect
 
 # from .forms import TenantRegistrationForm
 
-# Create your views here.
-# accounts/views.py (or another app's views.py)
- 
+# @login_required
 def home_view(request):
     return render(request, 'home.html')#index.html
 

@@ -1,0 +1,140 @@
+
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Real Estate App{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .nav-menu {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .nav-menu ul li {
+            margin-right: 20px;
+        }
+        .nav-menu ul li:last-child {
+            margin-right: 0;
+        }
+        .search-bar input {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        .search-bar button {
+            padding: 5px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Real Estate App</h1>
+        <p>Your One-Stop Solution for Property Listings</p>
+    </div>
+    <div class="nav-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'coreApp:main' %}"> main</a></li>
+        
+            {% if user.is_authenticated %}
+            <a href="#" style ="color: #ffefef;"> { Welcome back-{{ user.username
+            }}}</a> 
+            <li><a href="{% url 'accounts:logout' %}">logout</a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:register' %}">register</a></li>
+            <li><a href="{% url 'accounts:login' %}">login</a></li>
+            {% endif %}
+
+            <!-- <li><a href="/properties/">Properties</a></li>
+            <li><a href="/agents/">Agents</a></li>
+            <li><a href="/contact/">Contact Us</a></li> -->
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search properties...">
+            <button>Search</button>
+        </div>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="footer">
+        <div class="social-icons">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+        <p>&copy; 2023 Real Estate App. All rights reserved.</p>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+    <!-- <div class="footer">
+        <div class="social-icons">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+        </div> -->
+     

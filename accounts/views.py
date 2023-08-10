@@ -3,6 +3,10 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 
+
+# def landing_page(request):
+#     return render(request, 'templates/commons/header.html')
+
 #our login
 def user_login(request):
     if request.user.is_authenticated:
@@ -18,7 +22,6 @@ def user_login(request):
                 return redirect('/')
             else:
                 messages.info(request, 'username or password is incorrect')
-
         # context = {}
         return render(request, 'login.html')
 
