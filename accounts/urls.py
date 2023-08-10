@@ -7,7 +7,7 @@ app_name = 'accounts'
 urlpatterns = [
 
     # path('', landing_page, name= 'header'),
-    path('register/', register_view, name='register'),
-    path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout'),
+    path('accounts/register/', register_view, name='register'),
+    path('accounts/login/', user_login, name='login'),
+    path('accounts/logout/', user_logout, name='logout'),
 ]

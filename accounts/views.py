@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 
 # def landing_page(request):
 #     return render(request, 'templates/commons/header.html')
 
-#our login
+# @login_required
 def user_login(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -42,7 +43,6 @@ def register_view(request):
 
     return render(request, "register.html", context) 
     # 
-
 def user_logout(request):
     logout(request)
     return redirect('/')

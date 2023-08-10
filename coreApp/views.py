@@ -5,11 +5,11 @@ from django.http import HttpResponseRedirect
 
 # from .forms import TenantRegistrationForm
 
-# @login_required
+@login_required
 def home_view(request):
     return render(request, 'home.html')#index.html
 
-# @login_required
+@login_required
 def Core_View(request):
     properties = Property_model.objects.all()
     tenants = Tenant_model.objects.all()
