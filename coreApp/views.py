@@ -5,11 +5,11 @@ from django.http import HttpResponseRedirect
 
 # from .forms import TenantRegistrationForm
 
-@login_required
+# @login_required
 def home_view(request):
     return render(request, 'home.html')#index.html
 
-@login_required
+# @login_required
 def Core_View(request):
     properties = Property_model.objects.all()
     tenants = Tenant_model.objects.all()
@@ -28,19 +28,6 @@ def Core_View(request):
     }
 
     return render(request, 'main.html', context)
-
-# form registration view
-# def tenant_registration_view(request):
-#     if request.method == 'POST':
-#         form = TenantRegistrationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('success')  # Redirect to a success page after successful registration
-#     else:
-#         form = TenantRegistrationForm()
-
-#     return render(request, 'registration.html', {'form': form})
-
 
 #populate data api
 from django.http import JsonResponse

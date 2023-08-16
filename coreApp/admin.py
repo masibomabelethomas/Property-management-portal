@@ -1,10 +1,6 @@
 from django.contrib import admin
 from . models import Property_model, Tenant_model, Lease_model, MaintenanceRequest_model, Payment_model, Invoice_model
 # from Authentication_App.models import CustomUser
- 
-# Register your models here. 
-# from .models import Product
-# admin.site.register(Product){basic way to register}
 
 # Customizations for the admin interface model registration.
 class Property_modelAdmin(admin.ModelAdmin):
