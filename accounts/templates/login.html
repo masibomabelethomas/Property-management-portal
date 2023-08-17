@@ -82,21 +82,18 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 
-
 					<h3 id="form-title">LOGIN</h3>
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="">
-                    {% comment%}
-                    {% url 'accounts:login' %}
-                    {% endcomment%}
+ 
                          {% csrf_token %}
 
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="username" placeholder="Username..." class="form-control">
+							<input type="text" name="user_name" placeholder="Username..." class="form-control">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -128,44 +125,3 @@
 </body>
 
 </html>
-
-
-
-
-{% comment %}
-{% include 'commons/base.html' %}
-
-{% block content%}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Real Estate App</title>
-</head>
-<body>
-    <h1>Login</h1>
-    
-    <form method="post" action="">
-
-        {% csrf_token %}
-        
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
-
-{% endblock %}
-
-{% endcomment %}

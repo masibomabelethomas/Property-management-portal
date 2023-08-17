@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
-@csrf_exempt
+# @csrf_exempt
 def user_login(request):
     if request.user.is_authenticated:
          return redirect('home')
@@ -17,11 +17,12 @@ def user_login(request):
                 user_name = request.POST.get('user_name')
                 password = request.POST.get('password')
 
-                user = authenticate(request, user_name=user_name, password=password)
+                user = authenticate(username=user_name, password=password)
                 
                 if user is not None:
                     login(request, user)
-                    return redirect ('home')
+                    return redirect('coreApp:home')
+                    # print(user.error)
                 else:
                     messages.info(request,'Invalid Username or Password')
                     #Handle invalid login 
@@ -43,7 +44,7 @@ def register_view(request):
                 messages.success(request, "Registration Successful for " + user)
                 return redirect("accounts:login")
 
-        context ={"register_form":form}
+        context ={"register_form":form,}
         return render(request, "register.html", context) 
 
 
