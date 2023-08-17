@@ -1,5 +1,9 @@
 
-{% include 'commons/base.html' %}
+{% comment %} 
+
+{% include 'commons/base.html' %} 
+
+{% endcomment %}
 
 {% block content %}
 <!DOCTYPE html>
@@ -79,6 +83,7 @@
 				<div class="d-flex justify-content-center form_container">
 
 					<form method="POST" action="">
+                        {% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -109,7 +114,9 @@
 				   		</div>
 					</form>
 				</div>
-		
+
+		{{register_form.errors}}
+
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Already have an account? <a href="{% url 'accounts:login' %}" class="ml-2">Login</a>
@@ -125,8 +132,8 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Username..';
-		form_fields[2].placeholder='Email..';
+		form_fields[1].placeholder='Username...';
+		form_fields[2].placeholder='Email...';
 		form_fields[3].placeholder='Enter password...';
 		form_fields[4].placeholder='Re-enter Password...';
 
