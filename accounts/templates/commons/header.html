@@ -8,7 +8,10 @@
 
 <nav>
     <ul>
+        {% if request.user.is_staff %}
         <li><a href="{% url 'coreApp:main' %}"> Main</a></li>
+        {% endif %}
+        
         <li><a href="{% url 'coreApp:home' %}"> Home</a></li>
 
         {% if user.is_authenticated %}
