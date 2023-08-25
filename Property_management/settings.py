@@ -41,14 +41,7 @@ INSTALLED_APPS = [
     # libraries
     'rest_framework.authtoken',
     # app registration
-    'Authentication_App',
-    
     'coreApp',
-    'Documents_App',
-    'Listings_App',
-    'Maintenance_App',
-    'RentCollection_App',
-    'ReportingAndAnalytics_App',
     'accounts'
 
 ]

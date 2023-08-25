@@ -16,13 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-# from django.urls import reverse
-# url = reverse('tenant_registration')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('coreApp.urls')),
-    # path('', include('Authentication_App.urls')),
     path('', include('accounts.urls')),
  
 ]
