@@ -31,7 +31,7 @@ class Tenant_model(models.Model):
     name = models.CharField(max_length=255)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
-    lease = models.ForeignKey('Lease_model', on_delete=models.SET_NULL, blank=True, null=True)
+    property = models.ForeignKey('Property_model', on_delete=models.SET_NULL, blank=True, null=True)
     move_in_date = models.DateField()
     move_out_date = models.DateField(blank=True, null=True)
     references = models.TextField()
@@ -47,21 +47,21 @@ class Tenant_model(models.Model):
 
 
  #Lease model.
-class Lease_model(models.Model):
-    property = models.ForeignKey('Property_model', on_delete=models.CASCADE)
-    start_date = models.DateField(null=True, blank=True)
-    tenant = models.ForeignKey(Tenant_model, on_delete=models.SET_NULL, blank=True, null=True)
-    end_date = models.DateField()
-    monthly_rent = models.DecimalField(max_digits=10, decimal_places=2)
-    security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
-    duration = models.DurationField(blank=True, null=True)
+# class Lease_model(models.Model):
+#     property = models.ForeignKey('Property_model', on_delete=models.CASCADE)
+#     start_date = models.DateField(null=True, blank=True)
+#     tenant = models.ForeignKey(Tenant_model, on_delete=models.SET_NULL, blank=True, null=True)
+#     end_date = models.DateField()
+#     monthly_rent = models.DecimalField(max_digits=10, decimal_places=2)
+#     security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
+#     duration = models.DurationField(blank=True, null=True)
 
-    def __str__(self):
-        return f"{self.property} - {self.tenant}"
+#     def __str__(self):
+#         return f"{self.property} - {self.tenant}"
 
-    def save(self, *args, **kwargs):
-        self.duration = self.end_date - self.start_date
-        super().save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         self.duration = self.end_date - self.start_date
+#         super().save(*args, **kwargs)
 
 
 

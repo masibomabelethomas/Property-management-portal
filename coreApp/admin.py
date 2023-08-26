@@ -1,5 +1,6 @@
 from django.contrib import admin
-from . models import Property_model, Tenant_model, Lease_model
+from . models import Property_model, Tenant_model
+# , Lease_model
 # from Authentication_App.models import CustomUser
 
 # Customizations for the admin interface model registration.
@@ -11,16 +12,16 @@ class Property_modelAdmin(admin.ModelAdmin):
 
 class Tenant_modelAdmin(admin.ModelAdmin):
     # Customize the admin options for your model here
-    list_display = ['lease']
+    list_display = ['name']
 
-class Lease_modelAdmin(admin.ModelAdmin):
-    # Customize the admin options for your model here
-    list_display = ['property']
+# class Lease_modelAdmin(admin.ModelAdmin):
+#     # Customize the admin options for your model here
+#     list_display = ['property']
  
 
 admin.site.register(Property_model, Property_modelAdmin)
 admin.site.register(Tenant_model, Tenant_modelAdmin)
-admin.site.register(Lease_model, Lease_modelAdmin)
+# admin.site.register(Lease_model, Lease_modelAdmin)
 
 
 # admin.site.register(CustomUser)
