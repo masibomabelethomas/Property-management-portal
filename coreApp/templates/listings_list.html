@@ -1,13 +1,18 @@
-
- {% block content %}
-
-
- {% for listing in listings %}
  
- <p href="/listings/{{listings.id}}"> {{ listing.name}}</p>
+{% block content %}
 
+ 
+{{ listing.name }}
 
- {% endfor %}
+<img src="{{ listing.image.url}}" alt=""/>
 
+ <a href="/coreApp/{{ listing.id }}/edit">Edit</a>
+ 
+ <a href="/coreApp/{{ listing.id }}/delete">Delete</a>
 
+ 
+
+  
  {% endblock %}
+  
+ 

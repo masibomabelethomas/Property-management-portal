@@ -22,6 +22,7 @@ class Property_model(models.Model):
         ('Occupied', 'Occupied'),
     ]
     status = models.TextField(choices=STATUS_CHOICES)
+    image = models.ImageField()
 
     def __str__(self):
         return self.name

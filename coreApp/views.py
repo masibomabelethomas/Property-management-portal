@@ -26,10 +26,8 @@ def Core_View(request):
     }
 
     return render(request, 'main.html', context)
- 
 
  #crud; create, retrive, update, delete, list,
-
 
 #the list of the availablwe properties.
 def property_model_list(request):
@@ -42,19 +40,20 @@ def property_model_list(request):
 
 
 #retriving the properties.
-
 def listing_retrive(request, pk):
-    listing = Property_model.objects.get(id=pk)
+    properties = Property_model.objects.get(id=pk)
     context = {
-        'listing':listing
+        'properties':properties
     }
     return render (request,"listing_retrive.html", context)
 
-def listing_Create(request):
+
+
+def listing_create(request):
     form = ListingForm()
 
     if request.method == "POST":
-        form = ListingForm(request.POST)
+        form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/")
@@ -64,13 +63,13 @@ def listing_Create(request):
     }
     return render(request, "listing_create.html", context)
 
-def listing_update(request):
+def listing_update(request, pk):
     
     listing = Property_model.objects.get(id=pk)
     form = ListingForm(instance=listing)
 
     if request.method == "POST":
-        form = ListingForm(request.POST, instance=listing)
+        form = ListingForm(request.POST, instance=listing, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/")
@@ -79,3 +78,8 @@ def listing_update(request):
         "form": form
     }
     return render(request, "listing_update.html", context)
+
+def listing_delete(request, pk):
+    listing = Property_model.objects.get(id=pk)
+    listing.delete()
+    return redirect("/")

@@ -14,4 +14,5 @@ class ListingForm(ModelForm):
             "amenities" ,
             "rental_price" ,
             "status" ,
+            "image"
         ]
