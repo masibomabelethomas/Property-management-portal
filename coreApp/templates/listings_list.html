@@ -1,18 +1,20 @@
- 
 {% block content %}
+<div class="container">
+    <div class="row">
+        {% for listing in listings %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ listing.image.url }}" alt="{{ listing.name }}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.name }}</h5>
+                    <p class="card-text">{{ listing.address }}</p>
+                    
+                    <a href="/listing/{{ listing.id }}/" class="btn btn-primary">View Details</a>
 
- 
-{{ listing.name }}
-
-<img src="{{ listing.image.url}}" alt=""/>
-
- <a href="/coreApp/{{ listing.id }}/edit">Edit</a>
- 
- <a href="/coreApp/{{ listing.id }}/delete">Delete</a>
-
- 
-
-  
- {% endblock %}
-  
- 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

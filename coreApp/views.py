@@ -38,16 +38,13 @@ def property_model_list(request):
     }
     return render(request, "listings_list.html", context)
 
-
 #retriving the properties.
-def listing_retrive(request, pk):
-    properties = Property_model.objects.get(id=pk)
+def listing_retrieve(request, pk):
+    listing = Property_model.objects.get(id=pk)
     context = {
-        'properties':properties
+        "listing": listing
     }
-    return render (request,"listing_retrive.html", context)
-
-
+    return render (request,"listing_retrieve.html", context)
 
 def listing_create(request):
     form = ListingForm()
