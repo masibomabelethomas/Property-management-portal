@@ -36,10 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # libraries
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     # app registration
     'coreApp',
-    'accounts'
+    'accounts',
+    'maintenance'
+
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
