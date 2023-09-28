@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'maintenance',
     'rest_framework',
     'Payments',
+    # 'user'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -150,7 +151,7 @@ SIMPLE_JWT = {
 
 
 #custom-user
-AUTH_USER_MODEL = 'user.UserAccount'
+AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # ## users
 # # AUTH_USER_MODEL = 'Authentication_App.CustomUser'
