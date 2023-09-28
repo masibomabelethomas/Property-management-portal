@@ -1,67 +1,53 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 name = 'coreApp'
  
 class Property_model(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='property')
     name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    size = models.PositiveIntegerField()
-    num_rooms = models.PositiveIntegerField()
+    location = models.CharField(max_length=50)
+    image = models.ImageField(blank=True, null=True)
+    rental_price = models.DecimalField(max_digits=10, decimal_places=2)
+    security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
+    # start_date = models.DateField()
+    # end_date = models.DateField()
+    # created = models.DateField(auto_now_add=True)
+    start_date= models.DateField(auto_now_add=True)
+    end_date= models.DateField(auto_now_add=True)
+    duration = models.DurationField()
+    date_paid = models.DateField(blank=True, null=True)
     AMENITIES_CHOICES = [
         ('Balcony', 'Balcony'),
         ('Gym', 'Gym'),
-        ('Swimming Pool', 'Swimming Pool'),
-        # Add more amenities as needed
-    ]
-    amenities = models.TextField(choices=AMENITIES_CHOICES)
-  
-    rental_price = models.DecimalField(max_digits=10, decimal_places=2)
+        ('Swimming Pool', 'Swimming Pool')]
     STATUS_CHOICES=[
         ('Available','Available'),
-        ('Occupied', 'Occupied'),
-    ]
+        ('Occupied', 'Occupied') ]
+    TYPE_OF_HOUSE =[('Single_room','Singleroom'),('Bedsitter','Bedsitter'),
+                    ('One bedroom','One bedroom'),('Two bedroom','Two bedroom'),
+                    ('Three bedroom','Three bedroom'),('Four bedroom','Four bedroom'),
+                    ('Studio','Studio'),('commercial shops','commercial shops')]
+    HOUSE_SIZE = [('STANDARD','STANDARD'), ('Spacious','Spacious')]
+    amenities = models.TextField(choices=AMENITIES_CHOICES)
     status = models.TextField(choices=STATUS_CHOICES)
-    image = models.ImageField()
-
+    house_type = models.PositiveIntegerField(choices=TYPE_OF_HOUSE)
+    size = models.PositiveIntegerField(choices=HOUSE_SIZE)
+    
     def __str__(self):
-        return self.name
-
-#Tenant
-class Tenant_model(models.Model):
-    name = models.CharField(max_length=255)
-    contact_number = models.CharField(max_length=20)
-    email = models.EmailField()
-    property = models.ForeignKey('Property_model', on_delete=models.SET_NULL, blank=True, null=True)
-    move_in_date = models.DateField()
-    move_out_date = models.DateField(blank=True, null=True)
-    references = models.TextField()
-    duration = models.DurationField(blank=True, null=True)  # Add the duration field
-
-    def __str__(self):
-        return self.name
+        return f"{self.property} - {self.user}"
 
     def save(self, *args, **kwargs):
-        if self.move_in_date and self.move_out_date:
-            self.duration = self.move_out_date - self.move_in_date
+        self.duration = self.end_date - self.start_date
         super().save(*args, **kwargs)
-
-
- #Lease model.
-# class Lease_model(models.Model):
-#     property = models.ForeignKey('Property_model', on_delete=models.CASCADE)
-#     start_date = models.DateField(null=True, blank=True)
-#     tenant = models.ForeignKey(Tenant_model, on_delete=models.SET_NULL, blank=True, null=True)
-#     end_date = models.DateField()
-#     monthly_rent = models.DecimalField(max_digits=10, decimal_places=2)
-#     security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
-#     duration = models.DurationField(blank=True, null=True)
-
-#     def __str__(self):
-#         return f"{self.property} - {self.tenant}"
-
-#     def save(self, *args, **kwargs):
-#         self.duration = self.end_date - self.start_date
-#         super().save(*args, **kwargs)
+         
+        
+        
+    # def duration(self):
+    #     if self.start_date and self.end_date:
+    #         return self.end_date - self.start_date
+    #     else:
+    #         return None
 
 
 

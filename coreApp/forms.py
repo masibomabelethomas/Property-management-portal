@@ -4,15 +4,18 @@ from .models import Property_model
 class ListingForm(ModelForm):
     class Meta:
         model = Property_model
-
+     
         fields =[
-
-            "name" ,
-            "address" ,
-            "size" ,
-            "num_rooms",
-            "amenities" ,
-            "rental_price" ,
-            "status" ,
-            "image"
+            'name' ,
+            'user' ,
+            'location',
+            'image',
+           'rental_price',
+            'security_deposit',
+            # 'duration',
+            'amenities',
+            'status',
+            'house_type',
+            'size'
         ]
+        

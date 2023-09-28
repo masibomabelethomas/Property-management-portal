@@ -6,12 +6,12 @@
             <div class="listing">
                 <h2>{{ listing.name }}</h2>
                 <img src="{{ listing.image.url }}" alt="{{ listing.name }}" width="100">
-                <p><strong>Address:</strong> {{ listing.address }}</p>
-                <p><strong>Size:</strong> {{ listing.size }}</p>
-                <p><strong>Number of Rooms:</strong> {{ listing.num_rooms }}</p>
-                <p><strong>Amenities:</strong> {{ listing.amenities }}</p>
-                <p><strong>Rental Price:</strong> Ksh{{ listing.rental_price }}</p>
-                <p><strong>Status:</strong> {{ listing.status }}</p>
+                <p><strong>name:</strong> {{ listing.name }}</p>
+                <p><strong>size:</strong> {{ listing.size }}</p>
+                <p><strong>location:</strong> {{ listing.location }}</p>
+                <p><strong>amenities:</strong> {{ listing.amenities }}</p>
+                <p><strong>rental Price:</strong> Ksh{{ listing.rental_price }}</p>
+                <p><strong>status:</strong> {{ listing.status }}</p>
                 
             </div>
         
@@ -19,3 +19,4 @@
 </div>
 {% endblock %}
 
+ 

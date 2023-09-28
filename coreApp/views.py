@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Property_model, Tenant_model
+from .models import Property_model
 # , Lease_model  
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -16,13 +16,11 @@ def home_view(request):
 @allowed_users(allowed_roles=['Admin'])
 def Core_View(request):
     properties = Property_model.objects.all()
-    tenants = Tenant_model.objects.all()
-    # leases = Lease_model.objects.all()
+     
 
     context = {
         'properties': properties,
-        'tenants': tenants,
-        # 'leases': leases,
+         
     }
 
     return render(request, 'main.html', context)
