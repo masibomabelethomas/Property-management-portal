@@ -4,14 +4,13 @@ from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
-
 class UserAccountManager(BaseUserManager):
     #normal user
-    def create_user(self, email, name,phone_number, password=None):
+    def create_user(self, email, name, phone_number, password=None):
         if not email:
             raise ValueError("The Email field must be set")
         email = self.normalize_email(email)
-        email = email.is_lower()
+        email = email.islower()
         user = self.model(
             email=email,
             name=name,
@@ -21,19 +20,18 @@ class UserAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
     
-    def create_realtor(self, email, name,phone_number, password=None):
-        user = self.create_user(email,name,phone_number, password)
-
+    def create_realtor(self, email, name, phone_number, password=None):
+        user = self.create_user(email, name, phone_number, password)
         user.is_realtor = True
         user.save(using=self.db)
         return user
     
     def create_superuser(self, phone_number, email, name, password=None):
-        user = self.create_user(email,name,phone_number, password)
-
-        user.is_superuser=True
+        user = self.create_user(email, name, phone_number, password)
+        
         user.is_staff =True
-
+        user.is_superuser=True
+        
         user.save(using=self.db)
         return user
 
@@ -44,7 +42,6 @@ class UserAccount(AbstractBaseUser,PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_realtor = models.BooleanField(default=False)
-
 
     objects = UserAccountManager()
 
