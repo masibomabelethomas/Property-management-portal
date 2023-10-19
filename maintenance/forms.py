@@ -5,6 +5,5 @@ from .models import MaintenanceRequest
 class MaintenanceRequestForm(forms.ModelForm):
     class Meta:
         model = MaintenanceRequest
-        fields = ['property','user', 'description', 
-                  'priority','title',
-                   'attachments']
+        fields = ['property','user','description', 
+                  'priority','title','attachments']

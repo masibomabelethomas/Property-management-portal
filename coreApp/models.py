@@ -1,10 +1,11 @@
 from django.db import models
-from accounts.models import UserAccount
-
-name = 'coreApp'
+# from accounts.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
  
+name = 'coreApp'
 class Property_model(models.Model):
-    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='property')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='property')
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=50)
     image = models.ImageField(blank=True, null=True)

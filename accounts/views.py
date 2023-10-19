@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 # from .import RegisterForm
-# from .forms import RegisterForm
+from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.http import HttpResponse
 from .decorators import unauthenticated_user, allowed_users
-
 
 @unauthenticated_user  # this function is defined in the decorators file to make this code section clean.
 def user_login(request):
@@ -30,25 +28,25 @@ def user_login(request):
 
 
 # @csrf_exempt #This skips csrf validation. Use csrf_protect to have validation
-# def register_view(request):
-#     if request.user.is_authenticated:
-#          return redirect('home')
-#     else:
-#         form = RegisterForm()
-#         if request.method == "POST":
-#             form = RegisterForm(request.POST)
-#             if form.is_valid():
-#                 user = form.save()
-#                 username = form.cleaned_data.get('username')
+def register_view(request):
+    if request.user.is_authenticated:
+         return redirect('coreApp:home')
+    else:
+        form = RegisterForm()
+        if request.method == "POST":
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                username = form.cleaned_data.get('username')
 
-#                 group = Group.objects.get(name='Users-Tenants')
-#                 user.group.add(group)
+                group = Group.objects.get(name='Users-Tenants')
+                user.group.add(group)
 
-#                 messages.success(request, "Registration Successful for " + username)
-#                 return redirect("accounts:login")
+                messages.success(request, "Registration Successful for " + username)
+                return redirect("accounts:login")
 
-#         context ={"register_form":form,}
-#         return render(request, "register.html", context)
+        context ={"register_form":form,}
+        return render(request, "accounts/register.html", context)
 
 
 def user_logout(request):
@@ -56,36 +54,34 @@ def user_logout(request):
     return redirect("accounts:login")
 
 
-# class based views for registering users
-from phonenumber_field.modelfields import PhoneNumberField
-from rest_framework.views import APIView 
-from django.views.generic import TemplateView
-from rest_framework import permissions, status
-from rest_framework.response import Response
-from django.contrib.auth import get_user_model
-User = get_user_model()
-# from .forms import RegisterForm
-from rest_framework.permissions import IsAuthenticated
-from .serializers import Userserializers
+# # class based views for registering users
+# from phonenumber_field.modelfields import PhoneNumberField
+# from rest_framework.views import APIView 
+# from django.views.generic import TemplateView
+# from rest_framework import permissions, status
+# from rest_framework.response import Response
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
+# # from .forms import RegisterForm
+# from rest_framework.permissions import IsAuthenticated
+# from .serializers import Userserializers
 
 
-class RegisterView(TemplateView):
-    template_name = 'accounts/register.html'
-#     permission_classes = [permissions.AllowAny]
-    # permission_classes = [IsAuthenticated]
-    def post(self,request, *args, **kwargs):
-        if request.method =='POST':
-          #   data = request.data
-            email=request.POST.get('email')
-            name=request.POST.get('name')
-            password=request.POST.get('password')
-            re_password=request.POST.get('re_password')
-            phone_number=request.POST.get('phone_number')
-            user=User.objects.create(name=name,email=email,password=password,phone_number=phone_number)
-            return redirect('coreApp:home')
+# class RegisterView(TemplateView):
+#     template_name = 'accounts/register.html'
+# #     permission_classes = [permissions.AllowAny]
+#     # permission_classes = [IsAuthenticated]
+#     def post(self,request, *args, **kwargs):
+#         if request.method =='POST':
+#           #   data = request.data
+#             email=request.POST.get('email')
+#             name=request.POST.get('name')
+#             password=request.POST.get('password')
+#             re_password=request.POST.get('re_password')
+#             phone_number=request.POST.get('phone_number')
+#             user=User.objects.create(name=name,email=email,password=password,phone_number=phone_number)
+#             return redirect('coreApp:home')
         
-
-
 
 
 # class RegisterView(TemplateView):

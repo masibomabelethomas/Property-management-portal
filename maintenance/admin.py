@@ -4,8 +4,7 @@ from .models import MaintenanceRequest
  
 class MaintenanceRequestAdmin(admin.ModelAdmin):
     list_display = ['property','user', 'description', 
-                  'priority','title',
-                   'attachments']
+                  'priority','title', 'attachments']
     list_filter = ['property','user', 'description']
     search_fields = ['priority','title']
  
