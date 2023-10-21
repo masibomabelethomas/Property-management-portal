@@ -6,11 +6,9 @@ from coreApp.views import(
       listing_retrieve, 
       listing_create,
       listing_update,
-      listing_delete
-)
+      listing_delete)
 
 app_name = 'coreApp'
-
 urlpatterns = [
     path('', views.home_view, name = 'home'),
     path('main/', views.Core_View, name = 'main'),

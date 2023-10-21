@@ -9,31 +9,23 @@ from .forms import ListingForm
 @allowed_users(allowed_roles=['Admin', 'Users-Tenants'])
 # @admin_only
 def home_view(request):
-    return render(request, 'home.html')#index.html
-
+    return render(request, 'home.html') #index.html
 @login_required(login_url='accounts:login')
 @allowed_users(allowed_roles=['Admin'])
 def Core_View(request):
     properties = Property_model.objects.all()
-     
     context = {
-        'properties': properties,
-         
+        'properties': properties,    
     }
-
     return render(request, 'main.html', context)
-
- #crud; create, retrive, update, delete, list,
-
+#crud; create, retrive, update, delete, list,
 #the list of the availablwe properties.
 def property_model_list(request):
     listings = Property_model.objects.all()
-
     context = {
         "listings":listings
     }
     return render(request, "listings_list.html", context)
-
 #retriving the properties.
 def listing_retrieve(request, pk):
     listing = Property_model.objects.get(id=pk)
@@ -50,7 +42,6 @@ def listing_create(request):
         if form.is_valid():
             form.save()
             return redirect("/")
-
     context = {
         "form": form
     }
@@ -60,18 +51,15 @@ def listing_update(request, pk):
     
     listing = Property_model.objects.get(id=pk)
     form = ListingForm(instance=listing)
-
     if request.method == "POST":
         form = ListingForm(request.POST, instance=listing, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/")
-
     context = {
         "form": form
     }
     return render(request, "listing_update.html", context)
-
 def listing_delete(request, pk):
     listing = Property_model.objects.get(id=pk)
     listing.delete()

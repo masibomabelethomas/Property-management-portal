@@ -11,7 +11,7 @@ from .decorators import unauthenticated_user, allowed_users
 @unauthenticated_user  # this function is defined in the decorators file to make this code section clean.
 def user_login(request):
     if request.method == "POST":
-        user_name = request.POST.get("user_name")
+        user_name = request.POST.get("username")
         password = request.POST.get("password")
 
         user = authenticate(username=user_name, password=password)
@@ -25,7 +25,6 @@ def user_login(request):
             # Handle invalid login
     context = {}
     return render(request, "accounts/login.html", context)
-
 
 # @csrf_exempt #This skips csrf validation. Use csrf_protect to have validation
 def register_view(request):
@@ -45,14 +44,12 @@ def register_view(request):
                 messages.success(request, "Registration Successful for " + username)
                 return redirect("accounts:login")
 
-        context ={"register_form":form,}
+        context ={"register_form":form}
         return render(request, "accounts/register.html", context)
-
 
 def user_logout(request):
     logout(request)
     return redirect("accounts:login")
-
 
 # # class based views for registering users
 # from phonenumber_field.modelfields import PhoneNumberField
