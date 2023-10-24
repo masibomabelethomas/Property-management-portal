@@ -120,6 +120,8 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = '/'  # Assuming 'dashboard' is the name of the view
 
-# ## users
+# users
+AUTH_USER_MODEL = 'auth.User'
+
 # # AUTH_USER_MODEL = 'Authentication_App.CustomUser'
 # AUTH_USER_MODEL = ''

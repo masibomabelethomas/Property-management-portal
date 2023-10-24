@@ -11,10 +11,10 @@ from .decorators import unauthenticated_user, allowed_users
 @unauthenticated_user  # this function is defined in the decorators file to make this code section clean.
 def user_login(request):
     if request.method == "POST":
-        user_name = request.POST.get("username")
+        username = request.POST.get("username")
         password = request.POST.get("password")
 
-        user = authenticate(username=user_name, password=password)
+        user = authenticate(username=username, password=password)
 
         if user is not None:
             login(request, user)
@@ -39,13 +39,24 @@ def register_view(request):
                 username = form.cleaned_data.get('username')
 
                 group = Group.objects.get(name='Users-Tenants')
-                user.group.add(group)
+                user.groups.add(group)
 
                 messages.success(request, "Registration Successful for " + username)
                 return redirect("accounts:login")
 
         context ={"register_form":form}
         return render(request, "accounts/register.html", context)
+    
+# # Check if the group is created or retrieved
+#     if created:
+#         print("Group 'MyGroup' has been created.")
+#     else:
+#         print("Group 'MyGroup' already exists.")
+
+
+
+# Create a group
+# group, created = Group.objects.get_or_create(name='MyGroup')
 
 def user_logout(request):
     logout(request)
