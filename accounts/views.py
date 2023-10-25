@@ -20,9 +20,13 @@ def user_login(request):
             login(request, user)
             return redirect("coreApp:home")
             # print(user.error)
+            # print(username and password)
         else:
-            messages.info(request, "Invalid Username or Password")
-            # Handle invalid login
+            messages.error(request, "Authentication failed. Please check your credentials.")
+            print("Authentication failed for user:", username)
+            # print(username and password)
+            # messages.info(request, "Invalid Username or Password")
+             
     context = {}
     return render(request, "accounts/login.html", context)
 
@@ -46,15 +50,7 @@ def register_view(request):
 
         context ={"register_form":form}
         return render(request, "accounts/register.html", context)
-    
-# # Check if the group is created or retrieved
-#     if created:
-#         print("Group 'MyGroup' has been created.")
-#     else:
-#         print("Group 'MyGroup' already exists.")
-
-
-
+ 
 # Create a group
 # group, created = Group.objects.get_or_create(name='MyGroup')
 

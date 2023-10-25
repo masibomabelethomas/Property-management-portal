@@ -13,21 +13,7 @@
     <h2>Properties</h2>
     <ul>
         {% for property in properties %}
-            <li>{{ property.name }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Tenants</h2>
-    <ul>
-        {% for tenant in tenants %}
-            <li>{{ tenant.first_name }} {{ tenant.last_name }}</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Leases</h2>
-    <ul>
-        {% for lease in leases %}
-            <li>{{ lease.name }}</li>
+            <li>{{ property.property_name }}</li>
         {% endfor %}
     </ul>
 

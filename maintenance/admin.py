@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import MaintenanceRequest
  
 class MaintenanceRequestAdmin(admin.ModelAdmin):
@@ -10,7 +9,6 @@ class MaintenanceRequestAdmin(admin.ModelAdmin):
  
 class MaintenanceRequestAdmin(admin.ModelAdmin):
     list_display = ['property']
-
  
 admin.site.register(MaintenanceRequest, MaintenanceRequestAdmin)
  

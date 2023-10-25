@@ -10,6 +10,7 @@ from .forms import ListingForm
 # @admin_only
 def home_view(request):
     return render(request, 'home.html') #index.html
+
 @login_required(login_url='accounts:login')
 @allowed_users(allowed_roles=['Admin'])
 def Core_View(request):
@@ -18,8 +19,10 @@ def Core_View(request):
         'properties': properties,    
     }
     return render(request, 'main.html', context)
+
 #crud; create, retrive, update, delete, list,
-#the list of the availablwe properties.
+#the list of the available properties.
+
 def property_model_list(request):
     listings = Property_model.objects.all()
     context = {
@@ -27,6 +30,7 @@ def property_model_list(request):
     }
     return render(request, "listings_list.html", context)
 #retriving the properties.
+
 def listing_retrieve(request, pk):
     listing = Property_model.objects.get(id=pk)
     context = {
@@ -47,8 +51,8 @@ def listing_create(request):
     }
     return render(request, "listing_create.html", context)
 
+
 def listing_update(request, pk):
-    
     listing = Property_model.objects.get(id=pk)
     form = ListingForm(instance=listing)
     if request.method == "POST":
@@ -60,6 +64,8 @@ def listing_update(request, pk):
         "form": form
     }
     return render(request, "listing_update.html", context)
+
+
 def listing_delete(request, pk):
     listing = Property_model.objects.get(id=pk)
     listing.delete()
