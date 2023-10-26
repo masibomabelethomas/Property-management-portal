@@ -50,7 +50,7 @@ def listing_create(request):
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("listing_all/")
     context = {
         "form": form
     }
@@ -63,7 +63,7 @@ def listing_update(request, pk):
         form = ListingForm(request.POST, instance=listing, files=request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("listing_all/")
         
     context = {"form": form}
 
@@ -73,6 +73,6 @@ def listing_delete(request, pk):
     listing = Property_model.objects.get(id=pk)
     if request.method == "POST":
         listing.delete()
-        return redirect("/")
+        return redirect("listing_all/")
     context ={'listing':listing}
     return render (request, 'delete.html', context)

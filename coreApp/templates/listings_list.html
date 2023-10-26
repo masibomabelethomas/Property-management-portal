@@ -10,7 +10,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ listing.property_name }}</h5>
                     <p class="card-text">{{ listing.location }}</p>
-                    <a href="{% url 'update_listing' listing.id %}" class="btn btn-primary">UPDATE-EDIT</a>
+                    <a href="{% url 'coreApp:update_listing' listing.id %}" class="btn btn-primary">UPDATE</a>
+                    <a href="{% url 'coreApp:retrieve_listing' listing.id %}" class="btn btn-primary">DETAILS</a>
+                    <a href="{% url 'coreApp:delete_listing' listing.id %}" class="btn btn-primary">DELETE</a>
                 </div>
             </div>
         </div>

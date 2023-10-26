@@ -19,8 +19,8 @@ urlpatterns = [
 
     path('listing_all/', property_model_list, name ='listing_all'),
 
-    path('retrieve_listing/<str:pk>/', listing_retrieve, name ='retrieve_listing'),
+    path('retrieve_listing/<int:pk>/', listing_retrieve, name ='retrieve_listing'),
 
-    path('delete_listing/<str:pk>/', listing_delete, name ='delete_listing'),
-    path('update_listing/<str:pk>/', listing_update, name='update_listing'),
+    path('delete_listing/<int:pk>/', listing_delete, name ='delete_listing'),
+    path('update_listing/<int:pk>/', listing_update, name='update_listing'),
 ]

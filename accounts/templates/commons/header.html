@@ -9,7 +9,7 @@
 <nav>
     <ul>
         {% if request.user.is_staff %}
-        <li><a href="{% url 'coreApp:main' %}"> Main</a></li>
+        <li><a href="{% url 'coreApp:listing_all' %}"> Main</a></li>
         {% endif %}
         
         <li><a href="{% url 'coreApp:home' %}"> Home</a></li>
