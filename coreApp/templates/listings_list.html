@@ -9,14 +9,8 @@
                 <img src="{{ listing.image.url }}" alt="{{ listing.name }}" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h5 class="card-title">{{ listing.property_name }}</h5>
-                    <p class="card-text">{{ listing.address }}</p>
-                    
-                    <a href="/listing/{{ listing.id }}/" class="btn btn-primary">View Details</a>
-
-                    <a href="listing/{{ listing.id }}/delete/" class="btn btn-primary">delete</a>
-
-                    <a href="listing/{{ listing.id }}/edit/" class="btn btn-primary">edit</a>
-
+                    <p class="card-text">{{ listing.location }}</p>
+                    <a href="{% url 'update_listing' listing.id %}" class="btn btn-primary">UPDATE-EDIT</a>
                 </div>
             </div>
         </div>
@@ -24,3 +18,6 @@
     </div>
 </div>
 {% endblock %}
+
+ 
+ 

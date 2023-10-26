@@ -55,7 +55,9 @@ class Property_model(models.Model):
         self.duration = self.end_date - self.start_date
         super().save(*args, **kwargs)
 
-
+    def __str__(self):
+        return self.property_name
+    
     # def duration(self):
     #     if self.start_date and self.end_date:
     #         return self.end_date - self.start_date
