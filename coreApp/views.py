@@ -6,13 +6,15 @@ from accounts.decorators import unauthenticated_user, allowed_users, admin_only
 from .forms import ListingForm
 
 @login_required(login_url='accounts:login')
-@allowed_users(allowed_roles=['Admin', 'Users-Tenants'])
-# @admin_only
-def home_view(request):
-    return render(request, 'home.html') #index.html
+# @allowed_users(allowed_roles=['Admin', 'Users-Tenants'])
+# # @admin_only
 
-@login_required(login_url='accounts:login')
-@allowed_users(allowed_roles=['Admin'])
+def home_view(request):
+    return render(request, 'accounts/home.html') #index.html
+
+# @login_required(login_url='accounts:login')
+# @allowed_users(allowed_roles=['Admin'])
+
 def Core_View(request):
     properties = Property_model.objects.all()
     context = {
@@ -51,7 +53,6 @@ def listing_create(request):
     }
     return render(request, "listing_create.html", context)
 
-
 def listing_update(request, pk):
     listing = Property_model.objects.get(id=pk)
     form = ListingForm(instance=listing)
@@ -64,7 +65,6 @@ def listing_update(request, pk):
         "form": form
     }
     return render(request, "listing_update.html", context)
-
 
 def listing_delete(request, pk):
     listing = Property_model.objects.get(id=pk)

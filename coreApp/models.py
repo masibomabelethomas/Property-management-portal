@@ -20,9 +20,9 @@ class Property_model(models.Model):
     date_paid = models.DateField(blank=True, null=True)
 
     AMENITIES_CHOICES = [
-        ('Balcony', 'Balcony'),
-        ('Gym', 'Gym'),
-        ('SwimmingPool', 'SwimmingPool')]
+        ('Balcony','Balcony'),
+        ('Gym','Gym'),
+        ('SwimmingPool','SwimmingPool')]
     
     STATUS_CHOICES=[
         ('Available','Available'),
