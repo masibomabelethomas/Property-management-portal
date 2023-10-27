@@ -65,6 +65,18 @@ class Property_model(models.Model):
     #         return None
 
 
+#booking model for booking instance
+from django.db import models
+from django.utils import timezone
 
+class Booking(models.Model):
+    property = models.ForeignKey(Property_model, on_delete=models.CASCADE)
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+    number_of_guests = models.IntegerField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Booking for {self.property} from {self.check_in_date} to {self.check_out_date}"
 
 

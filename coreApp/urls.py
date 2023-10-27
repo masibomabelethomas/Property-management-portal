@@ -6,7 +6,8 @@ from coreApp.views import(
     listing_retrieve, 
     listing_create,
     listing_update,
-    listing_delete)
+    listing_delete,
+    book_property)
 
 app_name = 'coreApp'
 
@@ -23,4 +24,6 @@ urlpatterns = [
 
     path('delete_listing/<int:pk>/', listing_delete, name ='delete_listing'),
     path('update_listing/<int:pk>/', listing_update, name='update_listing'),
+
+    path('book_property/<int:property_id>/', book_property, name='book_property'),
 ]

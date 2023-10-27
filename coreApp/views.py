@@ -63,7 +63,7 @@ def listing_update(request, pk):
         form = ListingForm(request.POST, instance=listing, files=request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("listing_all/")
+            return redirect("coreApp:listing_all")
         
     context = {"form": form}
 
@@ -73,6 +73,41 @@ def listing_delete(request, pk):
     listing = Property_model.objects.get(id=pk)
     if request.method == "POST":
         listing.delete()
-        return redirect("listing_all/")
+        return redirect("coreApp:listing_all")
     context ={'listing':listing}
     return render (request, 'delete.html', context)
+
+
+# bookingViews
+# from django.shortcuts import render, redirect
+from .bookingforms import BookingForm
+from .models import Property_model, Booking
+
+def book_property(request, property_id):
+    property = Property_model.objects.get(id=property_id)
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+
+        if form.is_valid():
+            check_in_date = form.cleaned_data['check_in_date']
+            check_out_date = form.cleaned_data['check_out_date']
+            number_of_guests = form.cleaned_data['number_of_guests']
+
+            # Check if the property is available for the selected dates
+            if property.availability == 'available':
+                # The property is available; you can create the booking here
+                booking = Booking(property=property, check_in_date=check_in_date, check_out_date=check_out_date, number_of_guests=number_of_guests)
+                booking.save()
+                property.availability = 'booked'
+                property.save()
+
+                # Redirect to a confirmation page or some other success page
+                return redirect('main/')
+            else:
+                # Property is not available
+                return render(request, 'property_not_available.html')
+    else:
+        form = BookingForm()
+
+    return render(request, 'booking_form.html', {'form': form, 'property': property})

@@ -3,6 +3,7 @@ from .models import Property_model
 class ListingForm(ModelForm):
     class Meta:
         model = Property_model
+        fields = '__all__'
         # fields =[
         #     'property_name',
         #     'user',
@@ -14,4 +15,4 @@ class ListingForm(ModelForm):
         #     'house_type',
         #     'size'
         # ]
-        fields = '__all__'
+        
