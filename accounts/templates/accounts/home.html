@@ -3,17 +3,35 @@
 {% block content %}
 <!DOCTYPE HTML>
 <html>
-	<body>
-		<div class="copyright">
-			Made with <a href="{% url 'coreApp:main' %}">sasa works</a>.
+<body>
+	<div class="container">
+		<div class="row">
+			{% for listing in listings %}
+			<div class="col-md-4 mb-4">
+				<div class="card">
+					<img src="{{ listing.image.url }}" alt="{{ listing.name }}" class="card-img-top img-fluid">
+					<div class="card-body">
+						<h5 class="card-title">{{ listing.property_name }}</h5>
+						<p class="card-text">{{ listing.location }}</p>
+						<a href="{% url 'coreApp:update_listing' listing.id %}" class="btn btn-primary">UPDATE</a>
+						<a href="{% url 'coreApp:retrieve_listing' listing.id %}" class="btn btn-primary">DETAILS</a>
+						<a href="{% url 'coreApp:delete_listing' listing.id %}" class="btn btn-primary">DELETE</a>
+						<a href="{% url 'coreApp:book_property' listing.id %}" class="btn btn-primary">BOOK HERE</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
 		</div>
-		
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	</div>
+	<div class="copyright">
+		<!-- Made with <a href="{% url 'coreApp:main' %}">sasa works</a>. -->
+	</div>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
 
-	</body>
 </html>
 {% endblock %}

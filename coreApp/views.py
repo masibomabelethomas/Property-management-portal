@@ -4,23 +4,25 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from accounts.decorators import unauthenticated_user, allowed_users, admin_only
 from .forms import ListingForm
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 @login_required(login_url='accounts:login')
 # @allowed_users(allowed_roles=['Admin', 'Users-Tenants'])
-# # @admin_only
+# @admin_only
 
 def home_view(request):
     return render(request, 'accounts/home.html') #index.html
 
-# @login_required(login_url='accounts:login')
-# @allowed_users(allowed_roles=['Admin'])
+@login_required(login_url='accounts:login')
+# @allowed_users(allowed_roles=['Admin','Users-Tenants'])
 
 def Core_View(request):
     properties = Property_model.objects.all()
     context = {
-        'properties': properties,    
+        'properties': properties,  
     }
-    return render(request, 'main.html', context)
+    return render(request, 'coreApp\templates\main.html', context)
 
 #crud; create, retrive, update, delete, list,
 #the list of the available properties.
