@@ -1,24 +1,82 @@
 
 {% include 'commons/base.html' %}
 {% block content %}
-<div class="container">
-    <h1>Listings</h1>
-    <div class="listings">
-        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>more details of the listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+              
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            justify-content: center;
+            max-height: 400px;
+            align-items: center;
+        }
+
+        .listings {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .listing {
+            width: 300px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            /* background-color: #fff; */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .listing h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .listing img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .listing p {
+            margin: 5px 0;
+        }
+
+        .listing strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Details About Listings</h1>
+        <div class="listings">
             <div class="listing">
                 <h2>{{ listing.name }}</h2>
-                <img src="{{ listing.image.url }}" alt="{{ listing.property_name }}" width="100">
+                <img src="{{ listing.image.url }}" alt="{{ listing.property_name }}">
                 <p><strong>name:</strong> {{ listing.property_name }}</p>
                 <p><strong>size:</strong> {{ listing.size }}</p>
                 <p><strong>location:</strong> {{ listing.location }}</p>
                 <p><strong>amenities:</strong> {{ listing.amenities }}</p>
                 <p><strong>rental Price:</strong> Ksh{{ listing.rental_price }}</p>
                 <p><strong>status:</strong> {{ listing.status }}</p>
-                
             </div>
-        
+        </div>
     </div>
-</div>
+</body>
+</html>
+
 {% endblock %}
 
  

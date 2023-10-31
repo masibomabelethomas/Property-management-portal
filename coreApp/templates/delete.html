@@ -1,15 +1,67 @@
-{% load static%}
+{% include 'commons/base.html' %}
+{% load static %}
 {% block content %}
+<style>
+    .confirmation-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 500px;
+        justify-content: center;
+        max-height: 400px;
+        align-items: center;
+        overflow: auto;
+        
+    }
 
-<p>
-    Are you sure you want to delete "{{listing}}"?
-</p>
+    .confirmation-container p {
+        margin-bottom: 20px;
+    }
 
-<form action="{% url 'coreApp:delete_listing' listing.id %}" method="POST">
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-    {% csrf_token %}
-    <a href="{% url 'coreApp:listing_all' %}"> Cancel</a>
-    <input type ='submit' name="Confirm">
-</form>
+    .cancel-link {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #091ceb;
+    }
 
-{% endblock%}
+    .confirm-button {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: hsl(0, 100%, 50%);
+        color: #ffffff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .confirm-button:hover {
+        background-color: #5347f5;
+    }
+    /* .cancel-link-button:hover {
+        background-color: hsl(240, 100%, 35%);} */
+</style>
+
+<div class="confirmation-container">
+    <p>Are you sure you want to delete "{{ listing }}"?</p>
+
+    <form action="{% url 'coreApp:delete_listing' listing.id %}" method="POST">
+        {% csrf_token %}
+        <div class="button-group">
+            <a href="{% url 'coreApp:listing_all' %}" class="cancel-link">Cancel</a>
+            <input type="submit" value="Confirm" class="confirm-button">
+        </div>
+    </form>
+</div>
+
+{% endblock %}
