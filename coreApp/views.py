@@ -52,7 +52,7 @@ def listing_create(request):
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("listing_all/")
+            return redirect("coreApp:listing_all")
     context = {
         "form": form
     }

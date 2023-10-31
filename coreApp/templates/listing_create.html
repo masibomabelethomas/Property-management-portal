@@ -1,10 +1,63 @@
-
 {% include 'commons/base.html' %}
+{% block content %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token%}
-    {{ form.as_p}}
+<!DOCTYPE html>
+<html lang="en">
 
-    <button type="submit"> submit</button>
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Form</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #7abecc;
+    }
 
-</form>
+    .form-container {
+      width: 50%;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
+
+
+{% endblock %}
