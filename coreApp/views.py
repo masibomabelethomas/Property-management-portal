@@ -97,19 +97,25 @@ def book_property(request, property_id):
             number_of_guests = form.cleaned_data['number_of_guests']
 
             # Check if the property is available for the selected dates
-            if property.availability == 'available':
+            if property.status == 'Available':
                 # The property is available; you can create the booking here
                 booking = Booking(property=property, check_in_date=check_in_date, check_out_date=check_out_date, number_of_guests=number_of_guests)
                 booking.save()
-                property.availability = 'booked'
+                property.status = 'Occupied'
                 property.save()
 
                 # Redirect to a confirmation page or some other success page
-                return redirect('main/')
+                return redirect('coreApp:success_page')
             else:
                 # Property is not available
-                return render(request, 'property_not_available.html')
+                return redirect('coreApp:property_unavailable')
     else:
         form = BookingForm()
 
     return render(request, 'booking_form.html', {'form': form, 'property': property})
+
+def property_unavailable(request):
+    return render(request, 'property_unavailable.html')
+
+def success_page(request):
+    return render(request, 'success_page.html')

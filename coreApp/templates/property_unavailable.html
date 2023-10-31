@@ -1,0 +1,44 @@
+{% include 'commons/base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Property Unavailable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f2f2f2; */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            /* color: #08446e; */
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            height: 75vh;
+        }
+
+        /* Additional styles can be added for more customization */
+    </style>
+</head>
+
+<body>
+    <h1>Ooops! The Property is Unavailable</h1>
+    <p>Sorry, the property is not available for booking at the moment.</p>
+</body>
+
+</html>
+
+{% endblock %}

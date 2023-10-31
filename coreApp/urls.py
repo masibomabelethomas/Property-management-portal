@@ -7,7 +7,10 @@ from coreApp.views import(
     listing_create,
     listing_update,
     listing_delete,
-    book_property)
+    book_property,
+    #booking
+    property_unavailable,
+    success_page)
 
 app_name = 'coreApp'
 
@@ -26,4 +29,10 @@ urlpatterns = [
     path('update_listing/<int:pk>/', listing_update, name='update_listing'),
 
     path('book_property/<int:property_id>/', book_property, name='book_property'),
+
+    #booking
+    # path('book_property/<int:property_id>/', views.book_property, name='book_property'),
+    path('property_unavailable/', property_unavailable, name='property_unavailable'),
+    path('success_page/', success_page, name='success_page'),
+
 ]
