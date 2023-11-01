@@ -44,7 +44,6 @@ def listing_retrieve(request, pk):
     return render (request,"listing_retrieve.html", context)
 
 
-
 def listing_create(request):
     form = ListingForm()
 
